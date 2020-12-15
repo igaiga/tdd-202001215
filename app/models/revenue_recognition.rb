@@ -6,8 +6,9 @@ class RevenueRecognition
   def schedule
     case @product
     when Word
-      [{revenue_recognized_on: @signed_on,
-        revenue_recognized_price: @product.price}]
+      @product.revenue_recognition_schedule(@signed_on)
+    when Excel
+      @product.revenue_recognition_schedule(@signed_on)
     end
   end
 end
