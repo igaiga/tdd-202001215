@@ -9,11 +9,12 @@ class Excel < Product
     "スプレッドシート"
   end
   def revenue_recognition_schedule(signed_on:)
+    # TODO RevenueRecognitionMaster(signed_onではなく、起算日からx日でx円収益確定するかに変更)
     [
-      { revenue_recognized_on: signed_on,
-        revenue_recognized_price: 18533 },
-      { revenue_recognized_on: signed_on + 30.days,
-        revenue_recognized_price: 9267 }
+      { RevenueRecognition.new(signed_on: signed_on,
+                               price: 18533) },
+      { RevenueRecognition.new(signed_on: signed_on + 30.days,
+                               price: 9267) }
     ]
   end
 end
